@@ -1,0 +1,75 @@
+{
+  "name": "@jcodesmore/youtube-mcp",
+  "version": "0.1.0",
+  "description": "YouTube tools for AI coding agents — search, transcripts, video info, channel browsing, playlists",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "youtube-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "skills",
+    "agents",
+    "scripts",
+    "docs/README.*.md",
+    ".claude-plugin",
+    ".cursor-plugin",
+    ".opencode",
+    "gemini-extension.json",
+    "GEMINI.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "license": "Apache-2.0",
+  "author": {
+    "name": "JCodesMore",
+    "url": "https://github.com/JCodesMore"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JCodesMore/youtube-mcp.git"
+  },
+  "homepage": "https://github.com/JCodesMore/youtube-mcp",
+  "bugs": {
+    "url": "https://github.com/JCodesMore/youtube-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "youtube",
+    "transcripts",
+    "ai-agents",
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "search",
+    "video",
+    "transcript",
+    "plugin"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "youtubei.js": "^17.0.1",
+    "youtube-transcript-plus": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^22.0.0"
+  },
+  "optionalDependencies": {
+    "puppeteer-core": "^24.0.0"
+  }
+}

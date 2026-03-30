@@ -1,0 +1,11 @@
+node_modules/
+dist/
+docs/research/
+docs/superpowers/
+.cookies.json
+.youtube-cookies.json
+.config.json
+.claude/
+.cursor/
+*.env
+*.env.local
