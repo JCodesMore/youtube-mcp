@@ -80,8 +80,8 @@ All parameters use **camelCase**. Required params marked with *.
 - **youtube_get_transcript** — Watch a video and get everything that was said. Params: `videoId`*, `language` (default "en"). Returns timestamped segments and cleaned full text.
 - **youtube_get_video_info** — Get detailed metadata about a video. Params: `videoId`*. Returns description, tags, chapters, likes.
 - **youtube_get_channel_videos** — Browse a channel's videos. Params: `channelUrl`* (@handle, URL, or channel ID), `limit` (max 500), `sort` ("newest"|"popular"|"oldest").
-- **youtube_download** — Download a video or audio track to a local file. Params: `videoId`*, `outputPath`, `quality` ("best"|"720p"|"1080p"|etc.), `type` ("video+audio"|"audio"|"video"), `format` (default "mp4"), `force` (bypass duration guard). Videos over 30 minutes return a warning — re-call with `force: true` to proceed.
-- **youtube_clip** — Extract one or more clips from a video by timestamp. Params: `videoId`*, `clips`* (array of `{startTime, endTime, label?}`), `outputDir`, `quality`, `accurate` (frame-accurate re-encode vs fast keyframe cut), `force`. Downloads the source once, then cuts each clip. Timestamps accept seconds ("90"), MM:SS ("1:30"), or HH:MM:SS.
+- **youtube_download** — Download a video or audio track to a local file. Params: `videoId`*, `outputPath`, `quality` (default "720p"; also "best"|"1080p"|etc.), `type` ("video+audio"|"audio"|"video"), `format` (default "mp4"), `force` (bypass duration guard). Videos over 30 minutes return a warning — re-call with `force: true` to proceed.
+- **youtube_clip** — Extract one or more clips from a video by timestamp. Params: `videoId`*, `clips`* (array of `{startTime, endTime, label?}`), `outputDir`, `quality` (default "720p"), `accurate` (default false — do NOT set to true unless user asks for frame-perfect cuts, it re-encodes and is much slower), `force`. Downloads the source once, then cuts each clip. Timestamps accept seconds ("90"), MM:SS ("1:30"), or HH:MM:SS. **Keep clips concise — 10-30 seconds each.** A clip should capture a single key moment, not an entire section.
 
 ## Presenting Results
 
@@ -132,8 +132,8 @@ Think step by step about what the user needs. Compose tools like a researcher wo
 - **"Make sure these sources are credible"** — Look up creators beyond YouTube — check their backgrounds, affiliations, published work — to assess whether their takes should carry weight
 - **"What's actually true here?"** — Watch the video, then verify specific claims or data points against external sources to separate fact from opinion
 
-- **"Download this video"** — Use `youtube_download` with the video ID. Mention the file path and size when done.
-- **"Clip the best parts"** — Watch the video first (transcript), identify the key moments, then use `youtube_clip` with multiple clip definitions. Give each clip a descriptive label.
-- **"Make a highlight reel"** — Combine watching + clipping: get the transcript, identify the most interesting segments, then batch-clip them all in one call with meaningful labels.
+- **"Download this video"** — Use `youtube_download` with the video ID. Don't override the quality default (720p) unless the user asks for higher. Mention the file path and size when done.
+- **"Clip the best parts"** — Watch the video first (transcript), identify the key moments, then use `youtube_clip` with tight 10-30 second clips around each moment. Give each clip a descriptive label. Don't use `accurate: true` — fast keyframe cuts are fine.
+- **"Make a highlight reel"** — Combine watching + clipping: get the transcript, identify the most impactful 10-30 second moments (a punchline, a key stat, a memorable quote), then batch-clip them all in one call with meaningful labels. Resist the urge to clip entire sections — tight moments hit harder.
 
 Show what you're finding along the way and ask if the user wants you to keep going or shift focus.

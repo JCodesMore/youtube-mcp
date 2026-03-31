@@ -33,7 +33,7 @@ export const DEFAULTS = {
         ],
     },
     download: {
-        defaultQuality: 'best',
+        defaultQuality: '720p',
         defaultFormat: 'mp4',
         defaultType: 'video+audio',
         maxDurationMinutes: 30,

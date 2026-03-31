@@ -29,7 +29,7 @@ export declare const DEFAULTS: {
         readonly requiredCookies: readonly ["SID", "HSID", "SSID", "APISID", "SAPISID", "__Secure-1PSID", "__Secure-3PSID", "LOGIN_INFO"];
     };
     readonly download: {
-        readonly defaultQuality: "best";
+        readonly defaultQuality: "720p";
         readonly defaultFormat: "mp4";
         readonly defaultType: "video+audio";
         readonly maxDurationMinutes: 30;
@@ -72,7 +72,7 @@ export declare const CONFIG: {
         readonly requiredCookies: readonly ["SID", "HSID", "SSID", "APISID", "SAPISID", "__Secure-1PSID", "__Secure-3PSID", "LOGIN_INFO"];
     };
     readonly download: {
-        readonly defaultQuality: "best";
+        readonly defaultQuality: "720p";
         readonly defaultFormat: "mp4";
         readonly defaultType: "video+audio";
         readonly maxDurationMinutes: 30;
