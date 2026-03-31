@@ -17,6 +17,7 @@ export type UserOverrides = {
   transcript?: Partial<ResolvedConfig['transcript']>;
   channel?: Partial<ResolvedConfig['channel']>;
   playlist?: Partial<ResolvedConfig['playlist']>;
+  download?: Partial<ResolvedConfig['download']>;
   innertube?: Partial<ResolvedConfig['innertube']>;
 };
 

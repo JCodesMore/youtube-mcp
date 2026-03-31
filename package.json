@@ -61,13 +61,15 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.28.0",
-    "youtubei.js": "^17.0.1",
+    "ffmpeg-static": "^5.3.0",
     "youtube-transcript-plus": "^1.0.0",
+    "youtubei.js": "^17.0.1",
+    "ytdlp-nodejs": "^3.4.4",
     "zod": "^3.23.0"
   },
   "devDependencies": {
-    "typescript": "^5.5.0",
-    "@types/node": "^22.0.0"
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
   },
   "optionalDependencies": {
     "puppeteer-core": "^24.0.0"

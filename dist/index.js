@@ -10,6 +10,8 @@ import { videoInfoInputSchema, handleVideoInfo } from './tools/video-info.js';
 import { channelVideosInputSchema, handleChannelVideos } from './tools/channel-videos.js';
 import { channelInfoInputSchema, handleChannelInfo } from './tools/channel-info.js';
 import { playlistInputSchema, handlePlaylist } from './tools/playlist.js';
+import { downloadInputSchema, handleDownload } from './tools/download.js';
+import { clipInputSchema, handleClip } from './tools/clip.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(resolve(__dirname, '..', 'package.json'), 'utf-8'));
 const server = new McpServer({
@@ -51,6 +53,21 @@ server.registerTool('youtube_get_playlist', {
     inputSchema: playlistInputSchema,
     annotations: READ_ONLY_ANNOTATIONS,
 }, handlePlaylist);
+const DOWNLOAD_ANNOTATIONS = {
+    readOnlyHint: false,
+    destructiveHint: false,
+    openWorldHint: true,
+};
+server.registerTool('youtube_download', {
+    description: 'Download a YouTube video or audio track to a local file. Supports quality selection (best/720p/1080p/etc.), download type (video+audio/audio/video), and format. Videos over 30 minutes trigger a confirmation prompt — use force: true to bypass. For video+audio, automatically downloads and muxes separate streams for best quality.',
+    inputSchema: downloadInputSchema,
+    annotations: DOWNLOAD_ANNOTATIONS,
+}, handleDownload);
+server.registerTool('youtube_clip', {
+    description: 'Extract one or more clips from a YouTube video by timestamp. Downloads the source video once, then cuts each clip. Each clip needs startTime and endTime (seconds, MM:SS, or HH:MM:SS) and an optional label for the filename. By default uses fast keyframe-aligned cuts; set accurate: true for frame-perfect cuts (slower, re-encodes). Great for creating highlight reels.',
+    inputSchema: clipInputSchema,
+    annotations: DOWNLOAD_ANNOTATIONS,
+}, handleClip);
 async function main() {
     const transport = new StdioServerTransport();
     await server.connect(transport);

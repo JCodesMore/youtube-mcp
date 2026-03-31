@@ -32,6 +32,12 @@ export const DEFAULTS = {
             'LOGIN_INFO',
         ],
     },
+    download: {
+        defaultQuality: 'best',
+        defaultFormat: 'mp4',
+        defaultType: 'video+audio',
+        maxDurationMinutes: 30,
+    },
     innertube: {
         language: 'en',
         location: 'US',

@@ -28,6 +28,12 @@ export declare const DEFAULTS: {
         readonly profileDir: ".youtube/chrome-profile";
         readonly requiredCookies: readonly ["SID", "HSID", "SSID", "APISID", "SAPISID", "__Secure-1PSID", "__Secure-3PSID", "LOGIN_INFO"];
     };
+    readonly download: {
+        readonly defaultQuality: "best";
+        readonly defaultFormat: "mp4";
+        readonly defaultType: "video+audio";
+        readonly maxDurationMinutes: 30;
+    };
     readonly innertube: {
         readonly language: "en";
         readonly location: "US";
@@ -65,6 +71,12 @@ export declare const CONFIG: {
         readonly profileDir: ".youtube/chrome-profile";
         readonly requiredCookies: readonly ["SID", "HSID", "SSID", "APISID", "SAPISID", "__Secure-1PSID", "__Secure-3PSID", "LOGIN_INFO"];
     };
+    readonly download: {
+        readonly defaultQuality: "best";
+        readonly defaultFormat: "mp4";
+        readonly defaultType: "video+audio";
+        readonly maxDurationMinutes: 30;
+    };
     readonly innertube: {
         readonly language: "en";
         readonly location: "US";
@@ -94,6 +106,12 @@ export type ResolvedConfig = {
         defaultLimit: number;
         maxLimit: number;
     };
+    download: {
+        defaultQuality: DownloadQuality;
+        defaultFormat: string;
+        defaultType: DownloadType;
+        maxDurationMinutes: number;
+    };
     auth: {
         cookieFilename: string;
         cdpPort: number;
@@ -112,4 +130,6 @@ export type UploadDate = 'all' | 'today' | 'week' | 'month' | 'year';
 export type SearchDuration = 'all' | 'short' | 'medium' | 'long';
 export type SearchSortBy = 'relevance' | 'rating' | 'date' | 'views';
 export type SortOrder = 'newest' | 'popular' | 'oldest';
+export type DownloadQuality = 'best' | 'bestefficiency' | '144p' | '240p' | '360p' | '480p' | '720p' | '1080p' | '1440p' | '2160p';
+export type DownloadType = 'video+audio' | 'audio' | 'video';
 //# sourceMappingURL=config.d.ts.map
