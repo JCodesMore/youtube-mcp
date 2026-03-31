@@ -30,6 +30,8 @@ When installed via marketplace (`git clone`), the plugin needs:
 - **`SessionStart` hook** (`scripts/ensure-deps.mjs`) — auto-installs runtime dependencies into `CLAUDE_PLUGIN_DATA` on first session. Uses SHA-256 hash of `package.json` to skip on subsequent sessions.
 - **`NODE_PATH`** set in `.mcp.json` env — points `dist/` imports to `CLAUDE_PLUGIN_DATA/node_modules`.
 
+**On every version bump:** run `npm run build`, commit `dist/`, push to GitHub, run `npm publish`, and update the version in `JCodesMore/jcodesmore-plugins` marketplace.json. Git and npm must stay in sync.
+
 ## Key Patterns
 
 - **Zod schemas** define all tool inputs. Each tool file exports `fooInputSchema` and `handleFoo`.
