@@ -66,11 +66,17 @@ When the user pastes a YouTube URL, detect what kind it is and respond naturally
 - **Channel URL** (contains `@handle` or `/channel/`) — "That's a channel — want me to check out their latest videos or find their most popular stuff?"
 - **Playlist URL** (contains `list=`) — "That's a playlist — want me to list what's in it or dive into specific videos?"
 
-## Tools
+## Youtube Tools
 
 All parameters use **camelCase**. Required params marked with *.
 
-- **youtube_search** — Find videos by query. Params: `query`*, `limit` (max 50), `type` ("video"|"channel"|"playlist"), `uploadDate` ("all"|"today"|"week"|"month"|"year"), `duration` ("all"|"short"|"medium"|"long"), `sortBy` ("relevance"|"date"|"views"|"rating"). Returns titles, channels, views, duration, channelIds. **When the user asks for "today's" or "recent" content, always use `uploadDate: "today"` or `uploadDate: "week"`.** When they want newest first, combine with `sortBy: "date"`.
+- **youtube_search** — Find videos by query. Params: `query`*, `limit` (max 50), `type` ("video"|"channel"|"playlist"), `uploadDate` ("all"|"today"|"week"|"month"|"year"), `duration` ("all"|"short"|"medium"|"long"), `sortBy` ("relevance"|"date"|"views"|"rating"). Returns titles, channels, views, duration, channelIds. When they want newest first, combine with `sortBy: "date"`.
+
+  **Date filtering rules — important:**
+  - **Default is no filter.** The tool defaults to `uploadDate: "all"` — do NOT override this unless the user explicitly asks for a time range or you infer it is necessary. It is better to filter unneeded videos after the search than potentially preemptively filtering out relevant content.
+  - **Only filter when the user says so.** Phrases like "videos from today", "this week's", "from the last month" → use the matching `uploadDate` value.
+  - **A year in the query is NOT a date filter.** "Best AI businesses in 2026" is a topic, not a time range. Videos about 2026 may have been published in late 2025 or early 2026 — filtering to "month" would cut most of them out. Leave `uploadDate` at `"all"` and let relevance do the work. This applies for more than just a 'year' time quantifier. Consider this principle in all types of queries.
+  - **When in doubt, don't filter.** A wider search that includes older relevant videos is always better than a narrow search that misses them. One compensation technique is to just increase the number of search results you get back when you expect to filter out irrelevant search results.
 - **youtube_get_transcript** — Watch a video and get everything that was said. Params: `videoId`*, `language` (default "en"). Returns timestamped segments and cleaned full text.
 - **youtube_get_video_info** — Get detailed metadata about a video. Params: `videoId`*. Returns description, tags, chapters, likes.
 - **youtube_get_channel_videos** — Browse a channel's videos. Params: `channelUrl`* (@handle, URL, or channel ID), `limit` (max 500), `sort` ("newest"|"popular"|"oldest").
