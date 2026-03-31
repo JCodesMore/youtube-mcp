@@ -1,7 +1,7 @@
 {
   "name": "youtube",
   "description": "YouTube tools — search, transcripts, video info, channel browsing, playlists",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "JCodesMore",
     "url": "https://github.com/JCodesMore"
@@ -16,5 +16,17 @@
     "research",
     "search",
     "claude-code"
-  ]
+  ],
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/ensure-deps.mjs\""
+          }
+        ]
+      }
+    ]
+  }
 }

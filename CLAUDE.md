@@ -16,12 +16,19 @@ src/lib/user-config.ts — User config overrides, deep merge with defaults.
 
 ## Build
 
-Always run `npm run build` after changing any file in `src/`. The compiled output goes to `dist/`.
+Always run `npm run build` after changing any file in `src/`. The compiled output goes to `dist/` and is committed to git (required for plugin marketplace distribution).
 
 ```bash
 npm run build    # compile once
 npm run dev      # watch mode
 ```
+
+## Plugin Distribution
+
+When installed via marketplace (`git clone`), the plugin needs:
+- **`dist/`** committed to git — Claude Code doesn't run build steps after cloning.
+- **`SessionStart` hook** (`scripts/ensure-deps.mjs`) — auto-installs runtime dependencies into `CLAUDE_PLUGIN_DATA` on first session. Uses SHA-256 hash of `package.json` to skip on subsequent sessions.
+- **`NODE_PATH`** set in `.mcp.json` env — points `dist/` imports to `CLAUDE_PLUGIN_DATA/node_modules`.
 
 ## Key Patterns
 
